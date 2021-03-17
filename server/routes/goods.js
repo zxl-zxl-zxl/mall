@@ -40,19 +40,19 @@ router.get("/list", function(req, res, next) {
     switch (priceLevel) {
       case "0":
         priceGt = 0;
-        priceLte = 100;
+        priceLte = 3;
         break;
       case "1":
-        priceGt = 100;
-        priceLte = 500;
+        priceGt = 3;
+        priceLte = 6;
         break;
       case "2":
-        priceGt = 500;
-        priceLte = 1000;
+        priceGt = 6;
+        priceLte = 10;
         break;
       case "3":
-        priceGt = 1000;
-        priceLte = 5000;
+        priceGt = 10;
+        priceLte = 20;
         break;
     }
     //1)条件查询

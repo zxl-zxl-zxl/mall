@@ -2,7 +2,7 @@
   <div>
     <nav-header></nav-header>
     <nav-bread>
-      <span>My Cart</span>
+      <span>我的购物车</span>
     </nav-bread>
     <svg
       style="position: absolute; width: 0; height: 0; overflow: hidden;"
@@ -179,20 +179,20 @@
                       <use xlink:href="#icon-ok" />
                     </svg>
                   </span>
-                  <span>Select all</span>
+                  <span>全选</span>
                 </a>
               </div>
             </div>
             <div class="cart-foot-r">
               <div class="item-total">
-                Item total: <span class="total-price">{{totalPrice|currency('￥')}}</span>
+                总金额: <span class="total-price">{{totalPrice|currency('￥')}}</span>
               </div>
               <div class="btn-wrap">
                 <a
                   class="btn btn--red"
                   v-bind:class="{'btn--dis':checkedCount==0}"
                   @click="checkOut"
-                >Checkout</a>
+                >下单</a>
               </div>
             </div>
           </div>

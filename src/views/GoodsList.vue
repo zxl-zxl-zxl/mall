@@ -11,13 +11,13 @@
           <a
             href="javascript:void(0)"
             class="default cur"
-          >Default</a>
+          >默认</a>
           <a
             href="javascript:void(0)"
             class="price"
             @click="sortGoods()"
           >
-            Price
+            价格排序
             <!-- 升序默认颜色图标 -->
             <svg v-if="sortAnualFlag"
             t="1615888347857" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2055" width="12" height="12"><path d="M255.895296 0a51.2 51.2 0 0 0-51.2 51.2v921.6a51.2 51.2 0 0 0 102.4 0V51.2a51.2 51.2 0 0 0-51.2-51.2zM804.247296 270.848l-256-256a58.88 58.88 0 0 0-16.896-10.752 51.2 51.2 0 0 0-38.912 0 51.2 51.2 0 0 0-27.648 27.648A51.2 51.2 0 0 0 460.695296 51.2v921.6a51.2 51.2 0 0 0 102.4 0V174.592l168.448 168.96a51.2 51.2 0 0 0 72.704-72.704z" p-id="2056"></path></svg>
@@ -35,7 +35,7 @@
             href="javascript:void(0)"
             class="filterby stopPop"
             @click="showFilterPop"
-          >Filter by</a>
+          >按价格过滤</a>
         </div>
         <div class="accessory-result">
           <!-- filter -->
@@ -45,7 +45,7 @@
             v-bind:class="{'filterby-show':filterBy}"
           >
             <dl class="filter-price">
-              <dt>Price:</dt>
+              <dt>价格:</dt>
               <dd>
                 <a
                   href="javascript:void(0)"
@@ -85,7 +85,7 @@
                   </div>
                   <div class="main">
                     <div class="name">{{item.productName}}</div>
-                    <div class="price">{{item.salePrice}}</div>
+                    <div class="price">{{item.salePrice|currency('￥')}}</div>
                     <div class="btn-area">
                       <a
                         href="javascript:;"
@@ -240,6 +240,7 @@ import NavHeader from "@/components/NavHeader.vue";
 import NavFooter from "@/components/NavFooter.vue";
 import NavBread from "@/components/NavBread.vue";
 import axios from "axios";
+import { currency } from "@/util/currency";
 import Modal from "@/components/Modal.vue"; // 模态框
 import NavMobile from "@/components/NavMobile.vue";
 export default {
@@ -249,19 +250,19 @@ export default {
       priceFilter: [
         {
           startPrice: "0.00",
-          endPrice: "100.00",
+          endPrice: "3.00",
         },
         {
-          startPrice: "100.00",
-          endPrice: "500.00",
+          startPrice: "3.00",
+          endPrice: "6.00",
         },
         {
-          startPrice: "500.00",
-          endPrice: "1000.00",
+          startPrice: "6.00",
+          endPrice: "10.00",
         },
         {
-          startPrice: "1000.00",
-          endPrice: "5000.00",
+          startPrice: "10.00",
+          endPrice: "20.00",
         },
       ],
       priceChecked: "all",
@@ -285,6 +286,9 @@ export default {
     NavBread,
     Modal,
     NavMobile,
+  },
+  filters: {
+    currency: currency,
   },
   mounted: function () {
     this.getGoodsList();

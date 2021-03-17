@@ -3,15 +3,15 @@
     <nav-header></nav-header>
     <div class="container">
       <div class="page-title-normal">
-        <h2 class="page-title-h2"><span>check out</span></h2>
+        <h2 class="page-title-h2"><span>订单 完成</span></h2>
       </div>
       <!-- 进度条 -->
       <div class="check-step">
         <ul>
-          <li class="cur"><span>Confirm</span> address</li>
-          <li class="cur"><span>View your</span> order</li>
-          <li class="cur"><span>Make</span> payment</li>
-          <li class="cur"><span>Order</span> confirmation</li>
+          <li class="cur"><span>确认</span> 地址</li>
+          <li class="cur"><span>查看你的</span> 订单</li>
+          <li class="cur"><span>付</span> 款</li>
+          <li class="cur"><span>订单</span> 确认</li>
         </ul>
       </div>
 
@@ -21,10 +21,10 @@
             alt=""
           ></div>
         <div class="order-create-main">
-          <h3>Congratulations! <br>Your order is under processing!</h3>
+          <h3>恭喜! <br>您的订单完成!</h3>
           <p>
-            <span>Order ID：{{orderId}}</span>
-            <span>Order total：{{orderTotal | currency('￥')}}</span>
+            <span>订单编号：{{orderId}}</span>
+            <span>订单总金额：{{orderTotal | currency('￥')}}</span>
             <span>取件码：{{pickupCode}}</span>
           </p>
           <div class="order-create-btn-wrap">
@@ -33,14 +33,14 @@
               <router-link
                 class="btn btn--m"
                 to="/cart"
-              >Cart List</router-link>
+              >购物车列表</router-link>
             </div>
             <div class="btn-r-wrap">
               <!-- <a class="btn btn--m">Goods List</a> -->
               <router-link
                 class="btn btn--m"
                 to="/"
-              >Goods List</router-link>
+              >商品列表</router-link>
             </div>
           </div>
         </div>

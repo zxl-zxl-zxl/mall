@@ -104,16 +104,16 @@
           <!-- process step -->
           <div class="check-step">
             <ul>
-              <li class="cur"><span>Confirm</span> address</li>
-              <li><span>View your</span> order</li>
-              <li><span>Make</span> payment</li>
-              <li><span>Order</span> confirmation</li>
+              <li class="cur"><span>确认</span> 地址</li>
+              <li><span>查看你的</span> 订单</li>
+              <li><span>付</span> 款</li>
+              <li><span>订单</span> 确认</li>
             </ul>
           </div>
 
           <!-- address list -->
           <div class="page-title-normal checkout-title">
-            <h2><span>Shipping address</span></h2>
+            <h2><span>收货地址</span></h2>
           </div>
           <div class="addr-list-wrap">
             <div class="addr-list">
@@ -231,7 +231,7 @@
             <router-link
               class="btn btn--m btn--red"
               v-bind:to="{path:'orderConfirm',query:{'addressId':selectedAddrId}}"
-            >Next</router-link>
+            >下一步</router-link>
           </div>
         </div>
       </div>

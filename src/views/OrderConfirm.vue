@@ -2,7 +2,7 @@
   <div>
     <nav-header></nav-header>
     <nav-bread>
-      <span>Order Confirm</span>
+      <span>订单确认</span>
     </nav-bread>
     <svg
       style="position: absolute; width: 0; height: 0; overflow: hidden;"
@@ -73,16 +73,16 @@
         <!-- process step -->
         <div class="check-step">
           <ul>
-            <li class="cur"><span>Confirm</span> address</li>
-            <li class="cur"><span>View your</span> order</li>
-            <li><span>Make</span> payment</li>
-            <li><span>Order</span> confirmation</li>
+            <li class="cur"><span>确认</span> 地址</li>
+            <li class="cur"><span>查看你的</span> 订单</li>
+            <li><span>付</span> 款</li>
+            <li><span>订单</span> 确认</li>
           </ul>
         </div>
 
         <!-- order list -->
         <div class="page-title-normal checkout-title">
-          <h2><span>Order content</span></h2>
+          <h2><span>订单 详情</span></h2>
         </div>
         <div class="item-list-wrap confirm-item-list-wrap">
           <div class="cart-item order-item">
@@ -121,7 +121,7 @@
                         <span class="select-ipt">×{{item.productNum}}</span>
                       </div>
                     </div>
-                    <div class="item-stock item-stock-no">In Stock</div>
+                    <div class="item-stock item-stock-no">有货</div>
                   </div>
                 </div>
                 <div class="cart-tab-4">
@@ -137,23 +137,23 @@
           <div class="price-count">
             <ul>
               <li>
-                <span>Item subtotal:</span>
+                <span>商品总金额:</span>
                 <span>{{subTotal|currency('￥')}}</span>
               </li>
               <li>
-                <span>Shipping:</span>
+                <span>配送费:</span>
                 <span>{{shipping|currency('￥')}}</span>
               </li>
               <li>
-                <span>Discount:</span>
+                <span>优惠金额:</span>
                 <span>{{discount|currency('￥')}}</span>
               </li>
               <li>
-                <span>Tax:</span>
+                <span>税费:</span>
                 <span>{{tax|currency('￥')}}</span>
               </li>
               <li class="order-total-price">
-                <span>Order total:</span>
+                <span>订单总金额:</span>
                 <span>{{orderTotal|currency('￥')}}</span>
               </li>
             </ul>
@@ -172,7 +172,7 @@
             <button
               class="btn btn--m btn--red"
               @click="payMent"
-            >Proceed to payment</button>
+            >付款</button>
           </div>
         </div>
       </div>

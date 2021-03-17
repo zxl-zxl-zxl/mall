@@ -126,13 +126,13 @@
             class="navbar-link login"
             @click="loginModalFlag=true"
             v-if="!nickName"
-          >Login</a>
+          >登录</a>
           <a
             href="javascript:void(0)"
             class="navbar-link"
             @click="logOut"
             v-else
-          >Logout</a>
+          >退出</a>
 
           <div class="navbar-cart-container">
             <span
@@ -277,6 +277,7 @@ a {
 }
 .navbar-link {
   margin-right: 12px;
+  width: 50px !important;
 }
 .navbar-cart-container {
   position: relative;
@@ -317,8 +318,8 @@ a {
 .nav-title {
   width: 70px;
   text-overflow: ellipsis;
-  white-space:nowrap;
-  overflow:hidden; 
+  white-space: nowrap;
+  overflow: hidden;
 }
 </style>
 <script>

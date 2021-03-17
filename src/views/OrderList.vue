@@ -109,10 +109,10 @@ export default {
     this.init();
     //根据是否是手机端显示底部导航栏
     if (this._isMobile()) {
-      alert("手机端");
+      // alert("手机端");
       this.deviceType = "mobile";
     } else {
-      alert("pc端");
+      // alert("pc端");
       this.deviceType = "pc";
     }
   },

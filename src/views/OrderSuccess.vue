@@ -25,6 +25,7 @@
           <p>
             <span>Order ID：{{orderId}}</span>
             <span>Order total：{{orderTotal | currency('￥')}}</span>
+            <span>取件码：{{pickupCode}}</span>
           </p>
           <div class="order-create-btn-wrap">
             <div class="btn-l-wrap">
@@ -58,6 +59,7 @@ export default {
     return {
       orderId: "",
       orderTotal: 0,
+      pickupCode: "",
     };
   },
   components: {
@@ -81,6 +83,7 @@ export default {
         if (res.status == "0") {
           this.orderId = orderId;
           this.orderTotal = res.result.orderTotal;
+          this.pickupCode = res.result.pickupCode;
         }
       });
   },

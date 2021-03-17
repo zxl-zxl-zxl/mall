@@ -65,6 +65,11 @@
     </svg>
     <div class="container">
       <div class="checkout-order">
+        <div class="page-title-normal">
+          <h2 class="page-title-h2">
+            <span>订单确认</span>
+          </h2>
+        </div>
         <!-- process step -->
         <div class="check-step">
           <ul>
@@ -230,7 +235,7 @@ export default {
         .post("/users/payment", {
           addressId: addressId,
           orderTotal: this.orderTotal,
-          productIdList: this.productIdList,//购物车选中的商品,想要实现点击支付按钮从购物车中把这些商品删掉
+          productIdList: this.productIdList, //购物车选中的商品,想要实现点击支付按钮从购物车中把这些商品删掉
         })
         .then((response) => {
           let res = response.data;

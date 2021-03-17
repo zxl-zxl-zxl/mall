@@ -420,6 +420,7 @@
 }
 
 .filter-nav a.cur, .filter-nav a:hover {
+  /* color: #ee7a23; */
   color: #ee7a23;
 }
 

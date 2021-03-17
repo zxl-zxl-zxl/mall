@@ -271,7 +271,7 @@ export default {
     NavHeader,
     NavFooter,
     NavBread,
-    Modal,
+    Modal
   },
   computed: {
     // 实时计算的是属性，只不过是函数的写法，data里面就不用再声明了

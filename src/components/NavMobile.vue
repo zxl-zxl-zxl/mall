@@ -24,7 +24,7 @@
         <span>购物车</span>
       </router-link> -->
       <router-link
-         :class="{'g-tabbar-item':true,'tabbar-alive':this.rightFlag}"
+        :class="{'g-tabbar-item':true,'tabbar-alive':this.rightFlag}"
         to="/orderList"
       >
         <i class="iconfont icon-personal dingdan"></i>
@@ -37,25 +37,29 @@
 <script>
 export default {
   name: "Tabbar",
-  data(){
-    return{
-      leftFlag:false,
-      rightFlag:false
+  data() {
+    return {
+      leftFlag: false,
+      rightFlag: false,
+    };
+  },
+  mounted() {
+    //根据路由url定义底部导航栏alive样式
+    if (this.$route.path == "/") {
+      this.leftFlag = true;
+    } else if (this.$route.path == "/orderList") {
+      this.rightFlag = true;
     }
   },
-  mounted(){
-    //根据路由url定义底部导航栏alive样式
-    if(this.$route.path=='/'){
-      this.leftFlag=true
-    }else if(this.$route.path=='/orderList'){
-      this.rightFlag=true
-    }
-  }
+  methods: {
+
+  },
 };
 </script>
 <style scoped>
 .g-tabbar-fix {
   position: relative;
+  z-index: 9999;
 }
 .g-tabbar {
   position: fixed;
@@ -82,7 +86,7 @@ export default {
 /* .router-link-active {
   color: red;
 } */
-.tabbar-alive{
+.tabbar-alive {
   color: red;
 }
 </style>

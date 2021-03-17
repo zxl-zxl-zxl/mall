@@ -16,9 +16,21 @@
             href="javascript:void(0)"
             class="price"
             @click="sortGoods()"
-          >Price <svg class="icon icon-arrow-short">
-              <use xlink:href="#icon-arrow-short"></use>
-            </svg></a>
+          >
+            Price
+            <!-- 升序默认颜色图标 -->
+            <svg v-if="sortAnualFlag"
+            t="1615888347857" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2055" width="12" height="12"><path d="M255.895296 0a51.2 51.2 0 0 0-51.2 51.2v921.6a51.2 51.2 0 0 0 102.4 0V51.2a51.2 51.2 0 0 0-51.2-51.2zM804.247296 270.848l-256-256a58.88 58.88 0 0 0-16.896-10.752 51.2 51.2 0 0 0-38.912 0 51.2 51.2 0 0 0-27.648 27.648A51.2 51.2 0 0 0 460.695296 51.2v921.6a51.2 51.2 0 0 0 102.4 0V174.592l168.448 168.96a51.2 51.2 0 0 0 72.704-72.704z" p-id="2056"></path></svg>
+            <!-- 有颜色的升序图标 -->
+            <svg v-if="!sortAnualFlag&&!sortClickFlag"
+            t="1615888347857" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2055" width="12" height="12"><path d="M255.895296 0a51.2 51.2 0 0 0-51.2 51.2v921.6a51.2 51.2 0 0 0 102.4 0V51.2a51.2 51.2 0 0 0-51.2-51.2zM804.247296 270.848l-256-256a58.88 58.88 0 0 0-16.896-10.752 51.2 51.2 0 0 0-38.912 0 51.2 51.2 0 0 0-27.648 27.648A51.2 51.2 0 0 0 460.695296 51.2v921.6a51.2 51.2 0 0 0 102.4 0V174.592l168.448 168.96a51.2 51.2 0 0 0 72.704-72.704z" p-id="2056" fill="#ee7a23"></path></svg>
+            <!-- 无颜色的降序图标 -->
+            <svg v-if="sortClickFlag"
+            t="1615888364888" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="859" width="12" height="12"><path d="M255.895296 1024a51.2 51.2 0 0 1-51.2-51.2V51.2a51.2 51.2 0 0 1 102.4 0v921.6a51.2 51.2 0 0 1-51.2 51.2zM804.247296 753.152l-256 256a58.88 58.88 0 0 1-16.896 10.752 51.2 51.2 0 0 1-38.912 0 51.2 51.2 0 0 1-27.648-27.648A51.2 51.2 0 0 1 460.695296 972.8V51.2a51.2 51.2 0 0 1 102.4 0v798.208l168.448-168.96a51.2 51.2 0 0 1 72.704 72.704z" p-id="860" fill="#ee7a23"></path></svg>
+            <!-- <svg class="icon icon-arrow-short">
+                <use xlink:href="#icon-arrow-short"></use>
+            </svg> -->
+          </a>
           <a
             href="javascript:void(0)"
             class="filterby stopPop"
@@ -227,9 +239,9 @@ import "../assets/css/product.css";
 import NavHeader from "@/components/NavHeader.vue";
 import NavFooter from "@/components/NavFooter.vue";
 import NavBread from "@/components/NavBread.vue";
-import NavMobile from "@/components/NavMobile.vue";
 import axios from "axios";
 import Modal from "@/components/Modal.vue"; // 模态框
+import NavMobile from "@/components/NavMobile.vue";
 export default {
   data() {
     return {
@@ -262,7 +274,9 @@ export default {
       loading: false, // 往下滚动"加载图标"的出现效果:默认不出现
       mdShow: false, // 未登录的模态框是否显示
       mdShowCart: false, // 已登录的模态框是否显示
-      deviceType:''
+      deviceType: "",//控制底部导航栏显示
+      sortAnualFlag:true,//控制默认颜色图标显示
+      sortClickFlag:false,//控制有颜色图标显示
     };
   },
   components: {
@@ -276,10 +290,10 @@ export default {
     this.getGoodsList();
     //根据是否是手机端显示底部导航栏
     if (this._isMobile()) {
-      alert("手机端");
+      // alert("手机端");
       this.deviceType = "mobile";
     } else {
-      alert("pc端");
+      // alert("pc端");
       this.deviceType = "pc";
     }
   },
@@ -315,6 +329,8 @@ export default {
       });
     },
     sortGoods() {
+      this.sortAnualFlag=false//隐藏默认颜色图标
+      this.sortClickFlag=!this.sortClickFlag
       this.sortFlag = !this.sortFlag;
       this.page = 1;
       this.getGoodsList();

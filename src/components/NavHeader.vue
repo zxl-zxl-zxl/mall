@@ -56,13 +56,60 @@
       </defs>
     </svg>
     <div class="navbar">
+      <span
+        class="page-title-back page-title-home"
+        @click="backTo"
+        v-if="this.$route.path=='/'"
+      >
+        <svg
+          t="1615966198427"
+          class="icon"
+          viewBox="0 0 1024 1024"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          p-id="6574"
+          width="30"
+          height="30"
+        >
+          <path
+            d="M947.2 416L576 102.4c-35.2-30.4-88-30.4-123.2 0L76.8 416c-8 6.4-12.8 14.4-12.8 25.6 0 17.6 14.4 32 32 32 8 0 16-3.2 20.8-8L128 456v356.8c0 72 54.4 131.2 123.2 131.2h521.6C840 944 896 884.8 896 812.8V456l9.6 8c6.4 4.8 12.8 8 22.4 8 17.6 0 32-14.4 32-32 0-8-4.8-17.6-12.8-24zM448 880V656c0-17.6 14.4-32 32-32h64c17.6 0 32 14.4 32 32v224H448z m384-67.2c0 36.8-27.2 67.2-60.8 67.2H640V656c0-52.8-43.2-96-96-96h-64c-52.8 0-96 43.2-96 96v224H252.8c-33.6 0-60.8-30.4-60.8-67.2V403.2L492.8 152c11.2-9.6 28.8-9.6 41.6 0L832 401.6v411.2z"
+            p-id="6575"
+          ></path>
+        </svg>
+      </span>
+      <span
+        class="page-title-back"
+        @click="backTo"
+        v-if="this.$route.path!='/'"
+      >
+        <svg
+          t="1615949969516"
+          class="icon"
+          viewBox="0 0 1024 1024"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          p-id="2011"
+          width="19"
+          height="19"
+        >
+          <path
+            d="M407.00928 512l286.00832-286.00832a35.84 35.84 0 0 0-50.68288-50.68288L330.9824 486.656a35.84 35.84 0 0 0 0 50.68288l311.35744 311.35232a35.84 35.84 0 0 0 50.68288-50.68288L407.00928 512z"
+            fill="#666666"
+            p-id="2012"
+          ></path>
+        </svg>
+      </span>
       <div class="navbar-left-container">
-        <a href="/">
+        <a
+          href="/"
+          class="nav-home"
+        >
           <img
             class="navbar-brand-logo"
             src="/static/logo.png"
           >
         </a>
+        <span class="nav-title">汝好茶餐厅汝好茶餐厅</span>
       </div>
       <div
         class="navbar-right-container"
@@ -70,13 +117,13 @@
       >
         <div class="navbar-menu-container">
           <span
-            class="navbar-link"
+            class="navbar-link nickName"
             v-text="nickName"
             v-if="nickName"
           ></span>
           <a
             href="javascript:void(0)"
-            class="navbar-link"
+            class="navbar-link login"
             @click="loginModalFlag=true"
             v-if="!nickName"
           >Login</a>
@@ -178,28 +225,39 @@
   background-color: white;
   font-family: "moderat", sans-serif;
   font-size: 16px;
+  position: fixed;
+  top: 0;
+  z-index: 99;
 }
 .navbar {
   display: flex;
   justify-content: space-between;
   align-content: center;
   width: 100%;
-  height: 70px;
+  height: 63px;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 5px 20px 10px 20px;
+  padding: 10px 20px 10px 20px;
 }
 .navbar-left-container {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin-left: -20px;
+  margin-left: -37px;
+  font-size: 12px;
+}
+.navbar-left-container img {
+  width: 80%;
+  height: 100%;
+  border-radius: 50%;
 }
 .navbar-brand-logo {
   /*width: 120px;*/
 }
 .header a,
 .footer a {
+  width: 50%;
+  height: 80%;
   color: #666;
   text-decoration: none;
 }
@@ -216,10 +274,9 @@ a {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding-top: 10px;
 }
 .navbar-link {
-  padding-right: 12px;
+  margin-right: 12px;
 }
 .navbar-cart-container {
   position: relative;
@@ -242,6 +299,26 @@ a {
   width: 25px;
   height: 25px;
   transform: scaleX(-1);
+}
+.nickName {
+  font-weight: bold;
+  /* color: rgb(180, 88, 88); */
+  color: #ee7a23;
+}
+.login {
+  padding: 3px 5px;
+  border: 2px solid rgb(180, 88, 88);
+  border-radius: 25px;
+}
+.nav-home {
+  width: 20% !important;
+  margin-left: 67px;
+}
+.nav-title {
+  width: 70px;
+  text-overflow: ellipsis;
+  white-space:nowrap;
+  overflow:hidden; 
 }
 </style>
 <script>
@@ -315,7 +392,7 @@ export default {
         if (res.status == "0") {
           // this.nickName = res.result;
           this.$store.commit("updateUserInfo", res.result);
-          this.getCartCount();  // 查询购物车商品数量
+          this.getCartCount(); // 查询购物车商品数量
           // this.loginModalFlag = false;
         }
       });
@@ -326,6 +403,17 @@ export default {
         let res = response.data;
         this.$store.commit("initCartCount", res.result);
       });
+    },
+    backTo() {
+      if (this.$route.path == "/cart") {
+        this.$router.push({ path: "/" });
+      } else if (this.$route.path == "/address") {
+        this.$router.push({ path: "/cart" });
+      } else if (this.$route.path == "/orderConfirm") {
+        this.$router.push({ path: "/address" });
+      } else if (this.$route.path == "/orderSuccess") {
+        this.$router.push({ path: "/" });
+      }
     },
   },
 };

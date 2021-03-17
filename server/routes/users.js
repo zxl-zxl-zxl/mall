@@ -362,10 +362,12 @@ router.post("/payMent", function(req, res, next) {
       var platform = "622";
       var r1 = Math.floor(Math.random() * 10); //0-9
       var r2 = Math.floor(Math.random() * 10); //0-9
+      var r3 = Math.floor(Math.random() * 10000); //0-10000
       //订单需要时间
       var sysDate = new Date().Format("yyyyMMddhhmmss"); //系统时间
       var createDate = new Date().Format("yyyy-MM-dd hh:mm:ss"); //订单创建时间
       var orderId = platform + r1 + sysDate + r2;
+      var pickupCode = r3; //取件码
 
       //拿到这些数据之后往订单里面存,存到数据库的orderList里面
       // 订单信息存储到数据库
@@ -375,7 +377,8 @@ router.post("/payMent", function(req, res, next) {
         addressInfo: address, // 地址信息
         goodsList: goodsList, // 购买的商品信息
         orderStatus: "1", // 订单状态，1成功
-        createDate: createDate // 订单创建时间
+        createDate: createDate, // 订单创建时间
+        pickupCode: pickupCode //取件码
       };
       doc.orderList.push(order);
       //保存创建
@@ -456,9 +459,11 @@ router.get("/orderDetail", function(req, res, next) {
       var orderList = userInfo.orderList;
       if (orderList.length > 0) {
         var orderTotal = 0;
+        var pickupCode = "";
         orderList.forEach(item => {
           if (item.orderId == orderId) {
             orderTotal = item.orderTotal;
+            pickupCode = item.pickupCode;
           }
         });
         if (orderTotal > 0) {
@@ -468,7 +473,8 @@ router.get("/orderDetail", function(req, res, next) {
             msg: "",
             result: {
               orderId: orderId,
-              orderTotal: orderTotal
+              orderTotal: orderTotal,
+              pickupCode: pickupCode
             }
           });
         } else {
@@ -535,9 +541,9 @@ router.get("/orderList", function(req, res, next) {
         });
       } else {
         let orderList = [];
-        doc.orderList.forEach(item=>{
-          orderList.unshift(item)
-        })//为了实现按日期倒序
+        doc.orderList.forEach(item => {
+          orderList.unshift(item);
+        }); //为了实现按日期倒序
         // let orderList = doc.orderList;
         res.json({
           status: "0",

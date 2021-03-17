@@ -97,7 +97,9 @@
       <div class="container">
         <div class="checkout-addr">
           <div class="page-title-normal">
-            <h2 class="page-title-h2"><span>check out</span></h2>
+            <h2 class="page-title-h2">
+              <span>订单地址</span>
+            </h2>
           </div>
           <!-- process step -->
           <div class="check-step">
@@ -340,7 +342,7 @@ export default {
             this.init();
           }
         });
-    },
+    }
   },
 };
 </script>

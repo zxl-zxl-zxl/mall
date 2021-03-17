@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- <img src="./assets/logo.png"> -->
-    <router-view class="main"/>
+    <router-view class="main" />
     <!-- <router-view class="left" name="title"/> -->
     <!-- <router-view class="right" name="img"/> -->
   </div>
@@ -10,6 +10,13 @@
 <script>
 export default {
   name: "App",
+  data() {
+    return {
+    };
+  },
+  methods: {
+
+  },
 };
 </script>
 
@@ -22,9 +29,10 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-.left,.right{
-     float:left;
-     width: 49%;
-     border: 1px solid gray;
-   }
+.left,
+.right {
+  float: left;
+  width: 49%;
+  border: 1px solid gray;
+}
 </style>
